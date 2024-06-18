@@ -1,11 +1,9 @@
 package lucadipietro.U5_W1_D2;
 
 import lombok.Value;
-import lucadipietro.U5_W1_D2.entities.Drink;
-import lucadipietro.U5_W1_D2.entities.Menu;
-import lucadipietro.U5_W1_D2.entities.Pizza;
-import lucadipietro.U5_W1_D2.entities.Topping;
+import lucadipietro.U5_W1_D2.entities.*;
 import lucadipietro.U5_W1_D2.enums.PizzaType;
+import lucadipietro.U5_W1_D2.enums.TableStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -91,9 +89,13 @@ public class BeansConfig {
     }
 
     @Bean
-    public Menu getMenu(){
-        return new Menu(Arrays.asList(getMargheritaPizza(), getMargheritaPizzaXL(), getHawaiianPizza(), getHawaiianPizzaXL(), getSalamiPizza(), getSalamiPizzaXL()),
-                Arrays.asList(getTomato(), getCheese(), getHam(), getOnions(), getPineapple(), getSalami()),
-                Arrays.asList(getWater(), getLemonade(), getWine()));
+    public Table getTable(){
+        return new Table(1,8, TableStatus.BUSY);
     }
+
+    @Bean
+    public double getCoverCharge(@Value("${cover.charge}") double coverCharge){
+        return coverCharge;
+    }
+
 }
